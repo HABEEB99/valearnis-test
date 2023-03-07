@@ -4,6 +4,12 @@
 
 @layer base {
   body {
-    @apply bg-bgDark;
+    @apply bg-bgLight;
+  }
+}
+
+@layer components {
+  .btn {
+    @apply bg-btn h-10 rounded-md text-white font-bold opacity-80 hover:opacity-90 active:opacity-100;
   }
 }

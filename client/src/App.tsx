@@ -1,28 +1,35 @@
 import { createBrowserRouter, RouterProvider } from "react-router-dom";
+import MainLayout from "./layouts/MainLayout";
 import { ErrorPage, HomePage, QuizPage, ResultPage } from "./pages";
 
 const router = createBrowserRouter([
   {
     path: "/",
-    element: <HomePage />,
-  },
-  {
-    path: "/quiz",
-    element: <QuizPage />,
-  },
-  {
-    path: "/result",
-    element: <ResultPage />,
-  },
-  {
-    path: "*",
-    element: <ErrorPage />,
+    element: <MainLayout />,
+    children: [
+      {
+        path: "/",
+        element: <HomePage />,
+      },
+      {
+        path: "/quiz",
+        element: <QuizPage />,
+      },
+      {
+        path: "/result",
+        element: <ResultPage />,
+      },
+      {
+        path: "*",
+        element: <ErrorPage />,
+      },
+    ],
   },
 ]);
 
 function App() {
   return (
-    <div className="container mx-auto">
+    <div className="">
       <RouterProvider router={router} />
     </div>
   );

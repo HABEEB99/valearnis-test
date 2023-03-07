@@ -4,11 +4,11 @@ module.exports = {
   theme: {
     extend: {
       colors: {
-        header: "#C1C1C1",
-        bgLight: "#FFFFFF",
-        bgDark: "#2C4251",
-        btn1: "#D16666",
-        btn2: "#B6C649",
+        footer: "#E3F2FD",
+        bgLight: "#FAFAFA",
+        modal: "#686963",
+        btn: "#DB5461",
+        header: "#8AA29E",
       },
     },
   },
