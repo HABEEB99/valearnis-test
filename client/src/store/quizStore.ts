@@ -5,8 +5,13 @@ import { persist, devtools } from "zustand/middleware";
 interface IQuiz {
   category: string;
   difficulty: string;
+  currentQuestion: number;
   //   questions: Array<IQuestion>;
   questions: any;
+  score: number;
+  increaseScore: () => void;
+  prevQuestion: () => void;
+  nextQuestion: () => void;
   addQuestions: (questions: IQuestion) => void;
   setCategory: (newCategory: string) => void;
   removeCategory: () => void;
@@ -20,6 +25,8 @@ export const useQuizStore = create<IQuiz>()(
       (set) => ({
         category: "",
         difficulty: "",
+        currentQuestion: 0,
+        score: 0,
         questions: [],
         // questions: [{ category: "",
         //     correct_answers: "",
@@ -27,6 +34,11 @@ export const useQuizStore = create<IQuiz>()(
         //     incorrect_answers: [""],
         //     question: "",
         //     type: ""}],
+        increaseScore: () => set((state) => ({ score: state.score + 1 })),
+        prevQuestion: () =>
+          set((state) => ({ currentQuestion: state.currentQuestion - 1 })),
+        nextQuestion: () =>
+          set((state) => ({ currentQuestion: state.currentQuestion + 1 })),
         addQuestions: (newQuestions) => set({ questions: newQuestions }),
         setCategory: (newCategory) => set({ category: newCategory }),
         removeCategory: () => set({ category: "" }),
