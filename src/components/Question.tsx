@@ -18,7 +18,6 @@ const Question = () => {
     addQuestions,
     category,
     difficulty,
-    score,
     increaseScore,
   } = useQuizStore();
 
@@ -98,7 +97,6 @@ const Question = () => {
     <Suspense fallback={<Loader />}>
       <div className="flex flex-col items-center space-y-4 w-full h-full mx-auto">
         <div className="flex flex-col items-center justify-center">
-          <span> Score: {score}</span>
           <h2 className="text-lg text-slate-900 font-bold">
             Question: {currentQuestion + 1}
           </h2>

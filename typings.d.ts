@@ -1,3 +1,5 @@
+import { string } from "zod";
+
 export interface IQuestion {
   category: string;
   correct_answers: string;
@@ -7,6 +9,17 @@ export interface IQuestion {
   type: string;
 }
 
+export interface IDecoded {
+  name: string;
+  picture: string;
+  sub: string;
+}
+
+export interface Iuser {
+  name: string;
+  picture: string;
+  id: string;
+}
 // category: "Animals";
 // correct_answer: "Cheetah";
 // difficulty: "easy";

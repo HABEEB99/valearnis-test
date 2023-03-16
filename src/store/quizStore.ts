@@ -9,6 +9,8 @@ interface IQuiz {
   //   questions: Array<IQuestion>;
   questions: any;
   score: number;
+  resetScore: () => void;
+  resetCurrentQuestion: () => void;
   increaseScore: () => void;
   prevQuestion: () => void;
   nextQuestion: () => void;
@@ -28,12 +30,9 @@ export const useQuizStore = create<IQuiz>()(
         currentQuestion: 0,
         score: 0,
         questions: [],
-        // questions: [{ category: "",
-        //     correct_answers: "",
-        //     difficulty: "",
-        //     incorrect_answers: [""],
-        //     question: "",
-        //     type: ""}],
+        resetScore: () => set((state) => ({ score: (state.score = 0) })),
+        resetCurrentQuestion: () =>
+          set((state) => ({ currentQuestion: (state.currentQuestion = 0) })),
         increaseScore: () => set((state) => ({ score: state.score + 1 })),
         prevQuestion: () =>
           set((state) => ({ currentQuestion: state.currentQuestion - 1 })),

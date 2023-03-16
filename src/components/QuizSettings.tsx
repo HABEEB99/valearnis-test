@@ -1,9 +1,10 @@
 import { motion } from "framer-motion";
 import { useForm, SubmitHandler } from "react-hook-form";
 import { categories, difficulties } from "../utils/settings";
-import { useQuery } from "@tanstack/react-query";
 import { useQuizStore } from "../store/quizStore";
 import { useNavigate } from "react-router-dom";
+import { useUserStore } from "../store/userStore";
+import { toast } from "react-hot-toast";
 
 interface IFormData {
   category: string;
@@ -11,27 +12,21 @@ interface IFormData {
 }
 
 const QuizSettings = () => {
+  const { user } = useUserStore();
   const { setCategory, setDifficulty } = useQuizStore();
   const navigate = useNavigate();
-  const {
-    register,
-    formState: { errors },
-    handleSubmit,
-  } = useForm<IFormData>();
+  const { register, handleSubmit } = useForm<IFormData>();
 
   const submitForm: SubmitHandler<IFormData> = ({ category, difficulty }) => {
-    setCategory(category);
-    setDifficulty(difficulty);
-    navigate("/quiz");
+    if (!user) {
+      toast.error("Access denied! Please Login");
+      return;
+    } else {
+      setCategory(category);
+      setDifficulty(difficulty);
+      navigate("/quiz");
+    }
   };
-
-  const { data } = useQuery({
-    queryKey: ["questions"],
-    queryFn: () =>
-      fetch(
-        `https://opentdb.com/api.php?amount=10&category=20&difficulty=easy&type=multiple`
-      ).then((response) => response.json()),
-  });
 
   return (
     <motion.div
