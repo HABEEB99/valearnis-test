@@ -21,6 +21,9 @@ const Header = () => {
   const logout = () => {
     googleLogout();
     removeUser();
+    resetScore();
+    resetCurrentQuestion();
+    navigate("/");
     toast.error("Logged out");
   };
   return (

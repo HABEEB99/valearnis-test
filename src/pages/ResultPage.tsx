@@ -9,7 +9,7 @@ const ResultPage = () => {
   const { user } = useUserStore();
   const { score, resetScore, resetCurrentQuestion } = useQuizStore();
 
-  if (!user && !score) {
+  if (!user || !score) {
     navigate("/");
     toast.error("Access denied");
   }
