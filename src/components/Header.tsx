@@ -27,7 +27,7 @@ const Header = () => {
     toast.error("Logged out");
   };
   return (
-    <header className="w-full px-3 md:px-0 h-[10vh] bg-header flex items-center justify-center">
+    <header className="w-full px-3 md:px-16 h-[10vh] bg-header flex items-center justify-center">
       <nav className="container flex items-center justify-between">
         <motion.div
           initial={{ x: -500, opacity: 0, scale: 0.5 }}
